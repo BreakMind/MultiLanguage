@@ -47,7 +47,10 @@
     <Compile Include="IMultiLanguageProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="XmlFileSource\XmlFileSource.cs" />
+    <Compile Include="XmlFileSource\XmlLanguageData.cs" />
     <Compile Include="XmlFileSource\XmlLanguagePackage.cs" />
+    <Compile Include="XmlFileSource\XmlLanguageTranslationGroup.cs" />
+    <Compile Include="XmlFileSource\XmlLanguageTranslationItem.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Configuration\" />
