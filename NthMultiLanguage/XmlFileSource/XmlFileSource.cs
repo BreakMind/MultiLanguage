@@ -11,7 +11,7 @@ namespace NthDeveloper.MultiLanguage
         string m_FolderPath;
         string m_FileExtension;
 
-        public XmlFileSource(string folderPath, string fileExtension)
+        public XmlFileSource(string folderPath, string fileExtension=".xml")
         {
             m_FolderPath = folderPath;
             m_FileExtension = fileExtension;
@@ -41,7 +41,7 @@ namespace NthDeveloper.MultiLanguage
         
         private string[] getAllFiles()
         {
-            return Directory.GetFiles(m_FolderPath, m_FileExtension);
+            return Directory.GetFiles(m_FolderPath, "*" + m_FileExtension);
         }
     }
 }
