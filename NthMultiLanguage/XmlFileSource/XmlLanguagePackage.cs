@@ -29,6 +29,11 @@ namespace NthDeveloper.MultiLanguage
             this.LanguageName = languageName;
         }
 
+        public override string ToString()
+        {
+            return String.Format("{0} ({1})", this.LanguageName, this.LanguageCode);
+        }
+
         public string GetString(string key)
         {
             if (m_HasSingleGroup)
