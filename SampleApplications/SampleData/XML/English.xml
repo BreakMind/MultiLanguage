@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<Language xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Code="en-US" Name="English">
+	<Groups>
+		<Group Name="">
+			<Item Name="AppTitle" Value="Sample application" />
+			<Item Name="Yes" Value="Yes" />
+			<Item Name="No" Value="No" />
+		</Group>
+	</Groups>
+</Language>

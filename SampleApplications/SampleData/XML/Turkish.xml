@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<Language xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Code="tr-TR" Name="Türkçe">
+	<Groups>
+		<Group Name="">
+			<Item Name="AppTitle" Value="Örnek uygulama" />
+			<Item Name="Yes" Value="Evet" />
+			<Item Name="No" Value="Hayır" />
+		</Group>
+	</Groups>
+</Language>
