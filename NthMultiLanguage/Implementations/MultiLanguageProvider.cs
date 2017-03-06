@@ -9,6 +9,7 @@ namespace NthDeveloper.MultiLanguage
     {
         private List<ILanguagePackage> _allPackages;
         private ILanguagePackage _currentPackage;
+        private ILanguagePackageSource _packageSource;
 
         public event LanguagePackageChangedHandler CurrentPackageChanged;
 
@@ -29,10 +30,14 @@ namespace NthDeveloper.MultiLanguage
             }
         }
 
-        public MultiLanguageProvider()
+        public MultiLanguageProvider(ILanguagePackageSource packageSource)
         {
+            _packageSource = packageSource;
+
             _allPackages = new List<ILanguagePackage>();
             this.AllPackages = _allPackages.AsReadOnly();
+
+            _allPackages.AddRange(_packageSource.GetAllPackages());
         }
 
         public void SetCurrentLanguage(string languageCode)
@@ -40,6 +45,8 @@ namespace NthDeveloper.MultiLanguage
             ILanguagePackage package = _allPackages.FirstOrDefault(x => x.LanguageCode == languageCode);
             if (package == null)
                 throw new Exception("Specified language package could not be found.");
+
+            _packageSource.LoadPackage(package);
 
             this.CurrentPackage = package;
         }
@@ -52,6 +59,6 @@ namespace NthDeveloper.MultiLanguage
         public string GetString(string groupName, string key)
         {
             return _currentPackage.GetString(groupName, key);
-        }        
+        }
     }
 }
