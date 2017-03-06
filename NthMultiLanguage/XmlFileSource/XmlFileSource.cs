@@ -8,16 +8,16 @@ namespace NthDeveloper.MultiLanguage
 {
     public class XmlFileSource : ILanguagePackageSource
     {
-        string _folderPath;
-        string _fileExtension;
+        string m_FolderPath;
+        string m_FileExtension;
 
         public XmlFileSource(string folderPath, string fileExtension)
         {
-            _folderPath = folderPath;
-            _fileExtension = fileExtension;
+            m_FolderPath = folderPath;
+            m_FileExtension = fileExtension;
 
-            if (!_fileExtension.StartsWith("."))
-                _fileExtension = "." + _fileExtension;
+            if (!m_FileExtension.StartsWith("."))
+                m_FileExtension = "." + m_FileExtension;
         }
 
         public IList<ILanguagePackage> GetAllPackages()
@@ -41,7 +41,7 @@ namespace NthDeveloper.MultiLanguage
         
         private string[] getAllFiles()
         {
-            return Directory.GetFiles(_folderPath, _fileExtension);
+            return Directory.GetFiles(m_FolderPath, m_FileExtension);
         }
     }
 }

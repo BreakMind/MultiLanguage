@@ -7,9 +7,9 @@ namespace NthDeveloper.MultiLanguage
 {
     public class MultiLanguageProvider : IMultiLanguageProvider
     {
-        private List<ILanguagePackage> _allPackages;
-        private ILanguagePackage _currentPackage;
-        private ILanguagePackageSource _packageSource;
+        private List<ILanguagePackage> m_AllPackages;
+        private ILanguagePackage m_CurrentPackage;
+        private ILanguagePackageSource m_PackageSource;
 
         public event LanguagePackageChangedHandler CurrentPackageChanged;
 
@@ -17,48 +17,48 @@ namespace NthDeveloper.MultiLanguage
 
         public ILanguagePackage CurrentPackage
         {
-            get { return _currentPackage; }
+            get { return m_CurrentPackage; }
             private set
             {
-                if (value == _currentPackage)
+                if (value == m_CurrentPackage)
                     return;
 
-                _currentPackage = value;
+                m_CurrentPackage = value;
 
                 if (CurrentPackageChanged != null)
-                    CurrentPackageChanged(this, _currentPackage);
+                    CurrentPackageChanged(this, m_CurrentPackage);
             }
         }
 
         public MultiLanguageProvider(ILanguagePackageSource packageSource)
         {
-            _packageSource = packageSource;
+            m_PackageSource = packageSource;
 
-            _allPackages = new List<ILanguagePackage>();
-            this.AllPackages = _allPackages.AsReadOnly();
+            m_AllPackages = new List<ILanguagePackage>();
+            this.AllPackages = m_AllPackages.AsReadOnly();
 
-            _allPackages.AddRange(_packageSource.GetAllPackages());
+            m_AllPackages.AddRange(m_PackageSource.GetAllPackages());
         }
 
         public void SetCurrentLanguage(string languageCode)
         {
-            ILanguagePackage package = _allPackages.FirstOrDefault(x => x.LanguageCode == languageCode);
+            ILanguagePackage package = m_AllPackages.FirstOrDefault(x => x.LanguageCode == languageCode);
             if (package == null)
                 throw new Exception("Specified language package could not be found.");
 
-            _packageSource.LoadPackage(package);
+            m_PackageSource.LoadPackage(package);
 
             this.CurrentPackage = package;
         }
 
         public string GetString(string key)
         {
-            return _currentPackage.GetString(key);
+            return m_CurrentPackage.GetString(key);
         }
 
         public string GetString(string groupName, string key)
         {
-            return _currentPackage.GetString(groupName, key);
+            return m_CurrentPackage.GetString(groupName, key);
         }
     }
 }

@@ -10,13 +10,13 @@ namespace NthDeveloper.MultiLanguage
 {
     class XmlLanguagePackage : ILanguagePackage
     {
-        private bool _isLoaded;
-        private string _sourceFilePath;        
-        private bool _hasSingleGroup;
-        private Dictionary<string, string> _singleGroupCache;
-        private Dictionary<string, Dictionary<string, string>> _multiGroupCache;
+        private bool m_IsLoaded;
+        private string m_SourceFilePath;        
+        private bool m_HasSingleGroup;
+        private Dictionary<string, string> m_SingleGroupCache;
+        private Dictionary<string, Dictionary<string, string>> m_MultiGroupCache;
 
-        public bool IsLoaded { get { return _isLoaded; } }
+        public bool IsLoaded { get { return m_IsLoaded; } }
 
         public string LanguageCode { get; private set; }
 
@@ -24,20 +24,20 @@ namespace NthDeveloper.MultiLanguage
 
         private XmlLanguagePackage(string sourceFilePath, string languageCode, string languageName)
         {
-            _sourceFilePath = sourceFilePath;
+            m_SourceFilePath = sourceFilePath;
             this.LanguageCode = languageCode;
             this.LanguageName = languageName;
         }
 
         public string GetString(string key)
         {
-            if (_hasSingleGroup)
-                return _singleGroupCache[key];
+            if (m_HasSingleGroup)
+                return m_SingleGroupCache[key];
 
-            foreach(string groupName in _multiGroupCache.Keys)
+            foreach(string groupName in m_MultiGroupCache.Keys)
             {
-                if (_multiGroupCache[groupName].ContainsKey(key))
-                    return _multiGroupCache[groupName][key];
+                if (m_MultiGroupCache[groupName].ContainsKey(key))
+                    return m_MultiGroupCache[groupName][key];
             }
 
             return key;
@@ -45,10 +45,10 @@ namespace NthDeveloper.MultiLanguage
 
         public string GetString(string groupName, string key)
         {
-            if (_hasSingleGroup)
-                return _singleGroupCache[key];
+            if (m_HasSingleGroup)
+                return m_SingleGroupCache[key];
 
-            return _multiGroupCache[groupName][key];
+            return m_MultiGroupCache[groupName][key];
         }
 
         internal static XmlLanguagePackage LoadOnlyWithNameAndCodeFromFile(string filePath)
@@ -63,37 +63,37 @@ namespace NthDeveloper.MultiLanguage
 
         internal void LoadFullData()
         {
-            if (_isLoaded)
+            if (m_IsLoaded)
                 return;
 
             XmlLanguageData languageData = null;
             XmlSerializer serializer = new XmlSerializer(typeof(XmlLanguageData));
 
-            using (FileStream fs = File.OpenRead(_sourceFilePath))
+            using (FileStream fs = File.OpenRead(m_SourceFilePath))
             {
                 languageData = (XmlLanguageData)serializer.Deserialize(fs);
             }
 
             prepareFastAccessCaches(languageData);
 
-            _isLoaded = true;
+            m_IsLoaded = true;
         }
 
         private void prepareFastAccessCaches(XmlLanguageData languageData)
         {
             var _translationGroups = languageData.Groups;
-            _hasSingleGroup = _translationGroups.Count == 1;
+            m_HasSingleGroup = _translationGroups.Count == 1;
 
-            if(_hasSingleGroup)
+            if(m_HasSingleGroup)
             {
-                _singleGroupCache = createCacheFromGroup(languageData.Groups[0]);
+                m_SingleGroupCache = createCacheFromGroup(languageData.Groups[0]);
             }
             else
             {
-                _multiGroupCache = new Dictionary<string, Dictionary<string, string>>(languageData.Groups.Count);
+                m_MultiGroupCache = new Dictionary<string, Dictionary<string, string>>(languageData.Groups.Count);
 
                 for (int i = 0; i < languageData.Groups.Count; i++)
-                    _multiGroupCache.Add(languageData.Groups[i].Name, createCacheFromGroup(languageData.Groups[i]));
+                    m_MultiGroupCache.Add(languageData.Groups[i].Name, createCacheFromGroup(languageData.Groups[i]));
             }
         }
 
