@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NthMultiLanguage", "NthMult
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinFormsSample", "SampleApplications\WinFormsSample\WinFormsSample.csproj", "{CBEF5F55-9A43-4747-9FEA-D24F16AAAE81}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SampleApplications", "SampleApplications", "{30F622B4-AA20-4BB7-9E14-0AB239CDF13A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{CBEF5F55-9A43-4747-9FEA-D24F16AAAE81} = {30F622B4-AA20-4BB7-9E14-0AB239CDF13A}
 	EndGlobalSection
 EndGlobal
