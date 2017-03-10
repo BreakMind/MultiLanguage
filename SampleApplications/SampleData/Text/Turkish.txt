@@ -1,0 +1,8 @@
+#Language
+Name=Türkçe
+Code=tr-TR
+
+[General]
+AppTitle=Örnek uygulama
+Yes=Evet
+No=Hayýr

@@ -18,12 +18,21 @@ namespace WinFormsSample
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
+            //XML file sample
             string _xmlLangugeFilesFolder = Path.GetFullPath(@"..\..\SampleData\XML");
 
+            XmlFileSource _xmlFileSource = new XmlFileSource(_xmlLangugeFilesFolder);
+            MultiLanguageProvider _languageProvider = new MultiLanguageProvider(_xmlFileSource);
 
-            XmlFileSource _xmlfileSource = new XmlFileSource(_xmlLangugeFilesFolder);
-            MultiLanguageProvider _languageProvider = new MultiLanguageProvider(_xmlfileSource);
-            _languageProvider.SetCurrentLanguage("en-US");
+            //Text file sample
+            /*
+            string _txtLangugeFilesFolder = Path.GetFullPath(@"..\..\SampleData\Text");
+
+            TextFileSource _textFileSource = new TextFileSource(_txtLangugeFilesFolder);
+            MultiLanguageProvider _languageProvider = new MultiLanguageProvider(_textFileSource);
+            */
+
+            _languageProvider.SetCurrentLanguage("en-US");            
 
             Application.Run(new FrmMain(_languageProvider));
         }

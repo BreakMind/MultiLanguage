@@ -46,6 +46,9 @@
     <Compile Include="Implementations\MultiLanguageProvider.cs" />
     <Compile Include="IMultiLanguageProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TextFileSource\TextFileLineType.cs" />
+    <Compile Include="TextFileSource\TextFileSource.cs" />
+    <Compile Include="TextFileSource\TextLanguagePackage.cs" />
     <Compile Include="XmlFileSource\XmlFileSource.cs" />
     <Compile Include="XmlFileSource\XmlLanguageData.cs" />
     <Compile Include="XmlFileSource\XmlLanguagePackage.cs" />

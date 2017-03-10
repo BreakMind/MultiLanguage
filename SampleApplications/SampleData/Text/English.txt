@@ -1,0 +1,8 @@
+#Language
+Name=English
+Code=en-US
+
+[General]
+AppTitle=Sample application
+Yes=Yes
+No=No
